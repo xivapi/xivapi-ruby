@@ -1,6 +1,8 @@
 require 'xivapi/version'
 
 require 'xivapi/http'
+require 'xivapi/page'
+require 'xivapi/paginator'
 require 'xivapi/request'
 
 require 'rest-client'
