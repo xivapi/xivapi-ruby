@@ -7,19 +7,13 @@ A Ruby library for [XIVAPI](http://www.xivapi.com/).
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'xivapi'
+gem 'xivapi', git: 'https://github.com/mattantonelli/xivapi-ruby.git'
 ```
 
-And then execute:
+And then run:
 
 ```
-$ bundle
-```
-
-Or install it yourself as:
-
-```
-$ gem install xivapi
+$ bundle install
 ```
 
 ## Usage
