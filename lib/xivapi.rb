@@ -7,6 +7,7 @@ require 'xivapi/request'
 
 require 'rest-client'
 require 'json'
+require 'ostruct'
 
 module XIVAPI
   LANGUAGE_OPTIONS = %w(en ja de fr cn kr).freeze
