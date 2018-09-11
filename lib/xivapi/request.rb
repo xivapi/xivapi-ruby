@@ -9,6 +9,6 @@ module XIVAPI::Request
   end
 
   def servers
-    JSON.parse(request('servers'))
+    request(self, 'servers')
   end
 end

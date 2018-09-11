@@ -10,22 +10,20 @@ require 'json'
 
 module XIVAPI
   LANGUAGE_OPTIONS = %w(en ja de fr cn kr).freeze
-  TAGS_FORMAT = /^[a-z0-9\-_,]+$/i.freeze
+  TAGS_FORMAT = /^[a-z0-9\-_]+$/i.freeze
 
   class Client
     include XIVAPI::Request
 
-    attr_accessor :api_key, :pretty
+    attr_accessor :api_key
 
     # Initializes a new client for querying XIVAPI
     # @param api_key [String] API key provided by XIVAPI
     # @param language [String] Requested response langauge
     # @param poll_rate [Integer] Frequency at which to poll when waiting for data to cache
-    # @param pretty [true, false] Whether or not the response should be nice pretty JSON
-    # @param tags [String] Optional comma separated tags for tracking requests
-    def initialize(api_key: nil, language: 'en', poll_rate: 30, pretty: false, tags: nil)
+    # @param tags [String, Array<String>] Optional string tag(s) for tracking requests
+    def initialize(api_key: nil, language: 'en', poll_rate: 30, tags: nil)
       @api_key = api_key
-      @pretty = pretty
 
       self.language = language
       self.poll_rate = poll_rate
@@ -55,8 +53,12 @@ module XIVAPI
     end
 
     def tags=(tags)
-      raise ArgumentError, 'Invalid tag format' unless tags.match?(TAGS_FORMAT)
-      @tags = tags
+      raise ArgumentError, 'Invalid tag format' unless [*tags].each { |tag| tag.match?(TAGS_FORMAT) }
+      @tags = [*tags].join(',')
+    end
+
+    def default_params
+      { key: @api_key, language: @language, tags: @tags }
     end
   end
 end

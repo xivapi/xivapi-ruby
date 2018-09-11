@@ -2,9 +2,10 @@ module XIVAPI
   module HTTP
     API_BASE = 'https://xivapi.com'.freeze
 
-    def request(endpoint, params = {})
+    def request(client, endpoint, params = {})
       url = request_url(endpoint)
-      query_params = params.reject { |_, v| v.nil? || v.size == 0 }
+      query_params = params.merge(client.default_params)
+        .reject { |_, v| v.nil? || v.size == 0 }
 
       begin
         RestClient.get(url, params: query_params).body

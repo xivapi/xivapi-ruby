@@ -23,7 +23,7 @@ module XIVAPI
     end
 
     def next(page)
-      response = request('search', @params.merge(page: page))
+      response = request(@client, @endpoint, @params.merge(page: page))
       Page.new(JSON.parse(response))
     end
   end
