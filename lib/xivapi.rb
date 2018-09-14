@@ -1,5 +1,6 @@
 require 'xivapi/version'
 
+require 'xivapi/exceptions'
 require 'xivapi/http'
 require 'xivapi/page'
 require 'xivapi/paginator'
