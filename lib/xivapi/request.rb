@@ -84,4 +84,15 @@ module XIVAPI::Request
     params = { name: name, server: server&.capitalize, columns: [*columns].join(',') }
     XIVAPI::Paginator.new(self, params, 'pvpteam/search', LODESTONE_LIMIT)
   end
+
+  # Lodestone
+  def lodestone(category)
+    endpoint = category.to_s.downcase.delete('_')
+    request(self, "lodestone/#{endpoint}")
+  end
+
+  # PatchList
+  def patch_list
+    request(self, 'patchlist')
+  end
 end

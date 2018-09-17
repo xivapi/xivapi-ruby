@@ -46,22 +46,27 @@ module XIVAPI
     end
 
     def objectify(response)
-      return response unless response.is_a?(Hash)
-      result = {}
+      case response
+      when Hash
+        result = {}
 
-      response.each do |key, value|
-        if value.is_a?(Hash)
-          new_value = objectify(value)
-        elsif value.is_a?(Array)
-          new_value = value.map { |val| objectify(val) }
-        else
-          new_value = value
+        response.each do |key, value|
+          case value
+          when Hash, Array
+            new_value = objectify(value)
+          else
+            new_value = value
+          end
+
+          result[underscore(key)] = new_value
         end
 
-        result[underscore(key)] = new_value
+        OpenStruct.new(result)
+      when Array
+        response.map { |data| objectify(data) }
+      else
+        response
       end
-
-      OpenStruct.new(result)
     end
 
     def underscore(key)
