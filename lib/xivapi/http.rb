@@ -65,7 +65,7 @@ module XIVAPI
     end
 
     def underscore(key)
-      key.gsub(/([a-z\d])([A-Z])/,'\1_\2').gsub('.', '_').downcase
+      key.gsub('PvPTeam', 'PvpTeam').gsub(/([a-z\d])([A-Z])/,'\1_\2').gsub('.', '_').downcase
     end
   end
 end

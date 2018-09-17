@@ -51,4 +51,37 @@ module XIVAPI::Request
   def character_verified?(id: nil)
     request(self, "character/#{id}/verification").verification_token_pass
   end
+
+  # FreeCompany
+  def free_company(id: nil, members: false, poll: false, columns: [])
+    params = { data: members ? 'FCM' : nil, columns: [*columns].join(',') }
+    request_cached(self, "freecompany/#{id}", :free_company, params, poll)
+  end
+
+  def free_company_search(name: nil, server: nil, columns: [])
+    params = { name: name, server: server&.capitalize, columns: [*columns].join(',') }
+    XIVAPI::Paginator.new(self, params, 'freecompany/search', LODESTONE_LIMIT)
+  end
+
+  # Linkshell
+  def linkshell(id: nil, poll: false, columns: [])
+    params = { columns: [*columns].join(',') }
+    request_cached(self, "linkshell/#{id}", :linkshell, params, poll)
+  end
+
+  def linkshell_search(name: nil, server: nil, columns: [])
+    params = { name: name, server: server&.capitalize, columns: [*columns].join(',') }
+    XIVAPI::Paginator.new(self, params, 'linkshell/search', LODESTONE_LIMIT)
+  end
+
+  # PvPTeam
+  def pvp_team(id: nil, poll: false, columns: [])
+    params = { columns: [*columns].join(',') }
+    request_cached(self, "pvpteam/#{id}", :pvp_team, params, poll)
+  end
+
+  def pvp_team_search(name: nil, server: nil, columns: [])
+    params = { name: name, server: server&.capitalize, columns: [*columns].join(',') }
+    XIVAPI::Paginator.new(self, params, 'pvpteam/search', LODESTONE_LIMIT)
+  end
 end
