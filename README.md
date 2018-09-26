@@ -18,7 +18,125 @@ $ bundle install
 
 ## Usage
 
-Coming soon.
+Start by initializing a client. You can obtain an API key by creating a new XIVAPI application [here](http://www.xivapi.com/app).
+
+```rb
+require 'xivapi'
+
+# Basic configuration
+client = XIVAPI::Client.new(api_key: 'abc123')
+
+# Advanced configuration
+client = XIVAPI::Client.new(api_key: 'abc123', language: 'en', poll_rate: 30, tags: ['cool', 'dude'])
+```
+
+Now that you have a client, you can use it to contact the API. Examples have been provided below for the various endpoints. For the full list of endpoints and their parameters, please reference the [requests](https://github.com/mattantonelli/xivapi-ruby/blob/master/lib/xivapi/request.rb) code and accompanying documentation.
+
+### Response data
+The data returned from the API is automatically converted into [OpenStruct](https://ruby-doc.org/stdlib-2.0.0/libdoc/ostruct/rdoc/OpenStruct.html) objects with snake_cased keys. If the request returns multiple results (e.g. character search), it will be provided to you in the form of an `XIVAPI::Paginator` object. The paginator is [Enumerable](https://ruby-doc.org/core-2.4.1/Enumerable.html), allowing you to access the data with methods like `first`, `each`, `map` and `to_a`.
+
+See the examples below to get a better idea of how to access the data.
+
+### Examples
+##### Search
+```rb
+>> achievements = client.search(indexes: 'achievement', string: 'tankless')
+=> ...
+>> achievements.map(&:name)
+=> ["A Tankless Job II (Dark Knight)", "A Tankless Job I (Paladin)", "A Tankless Job I (Warrior)", "A Tankless Job II (Warrior)", "A Tankless Job I (Dark Knight)", "A Tankless Job II (Paladin)"]
+>> achievements.first.points
+=> 10
+```
+
+##### Content
+```rb
+>> client.content
+=> ["Achievement", "AchievementCategory", "AchievementKind", ...]
+
+>> achievement = client.content(name: 'Achievement', limit: 1).first
+=> ...
+>> achievement.name
+=> "To Crush Your Enemies I"
+
+>> achievements = client.content(name: 'Achievement', ids: 4..5)
+=> ...
+>> achievements.map(&:name)
+=> ["To Crush Your Enemies IV", "To Crush Your Enemies V"]
+```
+
+##### Servers
+```rb
+>> client.servers
+=> ["Adamantoise", "Aegis", "Alexander", ...]
+```
+
+##### Character
+```rb
+>> characters = client.character_search(name: 'raelys skyborn', server: 'behemoth')
+=> ...
+>> id = characters.first.id
+=> 7660136
+>> character = client.character(id: id, all_data: true)
+=> ...
+>> character.character.name
+=> "Raelys Skyborn"
+>> character.achievements.list.last.id
+=> 692
+```
+
+##### Free Company
+```rb
+>> fcs = client.free_company_search(name: 'lodestone', server: 'behemoth')
+=> ...
+>> id = fcs.first.id
+=> "9234349560946590421"
+>> fc = client.free_company(id: id, members: true)
+=> ...
+>> fc.free_company.name
+=> "Lodestone"
+>> fc.free_company_members.first.name
+=> "Raelys Skyborn"
+```
+
+##### Linkshell
+```rb
+>> linkshells = client.linkshell_search(name: 'thunderbirds', server: 'behemoth')
+=> ...
+>> id = linkshells.first.id
+=> "21955048183495181"
+>> linkshell = client.linkshell(id: id, poll: true).linkshell
+=> ...
+>> linkshell.name
+=> "Thunderbirds"
+```
+
+##### PVP Team
+```rb
+>> teams = client.pvp_team_search(name: 'kill', server: 'chaos')
+=> ...
+>> team = client.pvp_team(id: teams.first.id).pvp_team
+=> ...
+>> team.name
+=> "!Kill_For_A_Friend!"
+```
+
+##### Lodestone
+```rb
+>> updates = client.lodestone(:updates)
+=> ...
+>> updates.first.title
+=> "Companion App Updated (Sep. 18)"
+```
+
+##### Patch List
+```rb
+>> patch = client.patch_list.last
+=> ...
+>> patch.name
+=> "Patch 4.4: Prelude In Violet"
+>> Time.at(patch.release_date.to_i)
+=> 2018-09-18 10:00:00 +0000
+```
 
 ## Development
 
