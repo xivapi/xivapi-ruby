@@ -1,7 +1,7 @@
 module XIVAPI
   class RequestError < StandardError
     def initialize(response)
-      if response.headers[:content_type] == 'application/problem+json'
+      if response.headers[:content_type] =~ /json/
         message = JSON.parse(response)['Message']
       else
         message = 'Error contacting the API.'
