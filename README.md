@@ -38,7 +38,7 @@ The data returned from the API is automatically converted into [OpenStruct](http
 See the examples below to get a better idea of how to access the data.
 
 ### Examples
-##### Search
+#### Search
 ```rb
 >> achievements = client.search(indexes: 'achievement', string: 'tankless')
 => ...
@@ -48,7 +48,7 @@ See the examples below to get a better idea of how to access the data.
 => 10
 ```
 
-##### Content
+#### Content
 ```rb
 >> client.content
 => ["Achievement", "AchievementCategory", "AchievementKind", ...]
@@ -64,13 +64,13 @@ See the examples below to get a better idea of how to access the data.
 => ["To Crush Your Enemies IV", "To Crush Your Enemies V"]
 ```
 
-##### Servers
+#### Servers
 ```rb
 >> client.servers
 => ["Adamantoise", "Aegis", "Alexander", ...]
 ```
 
-##### Character
+#### Character
 ```rb
 >> characters = client.character_search(name: 'raelys skyborn', server: 'behemoth')
 => ...
@@ -84,7 +84,7 @@ See the examples below to get a better idea of how to access the data.
 => 692
 ```
 
-##### Free Company
+#### Free Company
 ```rb
 >> fcs = client.free_company_search(name: 'lodestone', server: 'behemoth')
 => ...
@@ -98,7 +98,7 @@ See the examples below to get a better idea of how to access the data.
 => "Raelys Skyborn"
 ```
 
-##### Linkshell
+#### Linkshell
 ```rb
 >> linkshells = client.linkshell_search(name: 'thunderbirds', server: 'behemoth')
 => ...
@@ -110,7 +110,7 @@ See the examples below to get a better idea of how to access the data.
 => "Thunderbirds"
 ```
 
-##### PVP Team
+#### PVP Team
 ```rb
 >> teams = client.pvp_team_search(name: 'kill', server: 'chaos')
 => ...
@@ -120,7 +120,7 @@ See the examples below to get a better idea of how to access the data.
 => "!Kill_For_A_Friend!"
 ```
 
-##### Lodestone
+#### Lodestone
 ```rb
 >> updates = client.lodestone(:updates)
 => ...
@@ -128,7 +128,7 @@ See the examples below to get a better idea of how to access the data.
 => "Companion App Updated (Sep. 18)"
 ```
 
-##### Patch List
+#### Patch List
 ```rb
 >> patch = client.patch_list.last
 => ...
