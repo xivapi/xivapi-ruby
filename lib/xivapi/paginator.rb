@@ -3,9 +3,9 @@ module XIVAPI
     include Enumerable
     include XIVAPI::HTTP
 
-    def initialize(client, params, endpoint, limit)
+    def initialize(client, params, endpoint, limit, per_page = nil)
       @client = client
-      @params = params.merge(limit: [limit, 100].min)
+      @params = params.merge(limit: per_page || limit)
       @endpoint = endpoint
       @limit = limit
     end

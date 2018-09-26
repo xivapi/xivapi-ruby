@@ -12,7 +12,11 @@ module XIVAPI
         body = JSON.parse(response.body)
         objectify(body)
       rescue RestClient::ExceptionWithResponse => e
-        raise XIVAPI::RequestError.new(e.response)
+        if e.http_code == 429
+          raise XIVAPI::RateLimitError.new
+        else
+          raise XIVAPI::RequestError.new(e.response)
+        end
       rescue RestClient::Exception => e
         raise e
       end

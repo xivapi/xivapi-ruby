@@ -13,11 +13,12 @@ module XIVAPI::Request
   end
 
   # Content
-  def content(name: nil, ids: [], limit: 100, columns: [])
+  def content(name: nil, ids: [], minify: false, limit: 100, columns: [])
     if name.nil?
       request(self, 'content')
     elsif [*ids].size == 1
-      request("#{name.capitalize}/#{[*ids].first}")
+      params = { minify: minify ? 1 : 0, columns: [*columns].join(',') }
+      request(self, "#{name.capitalize}/#{[*ids].first}", params)
     else
       params = { ids: [*ids].join(','), columns: [*columns].join(',') }
       XIVAPI::Paginator.new(self, params, name.capitalize, limit)
