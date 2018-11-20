@@ -7,7 +7,7 @@ A Ruby library for [XIVAPI](http://www.xivapi.com/).
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'xivapi', git: 'https://github.com/mattantonelli/xivapi-ruby.git', tag: 'v0.1.0'
+gem 'xivapi', git: 'https://github.com/mattantonelli/xivapi-ruby.git', tag: 'v0.1.1'
 ```
 
 And then run:

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    xivapi (0.1.0)
+    xivapi (0.1.1)
       rest-client (~> 2.0.2)
 
 GEM
