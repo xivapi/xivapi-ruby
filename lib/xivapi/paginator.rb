@@ -1,4 +1,5 @@
 module XIVAPI
+  # Paginates XIVAPI results
   class Paginator
     include Enumerable
     include XIVAPI::HTTP
@@ -15,6 +16,7 @@ module XIVAPI
       @limit = limit
     end
 
+    # An enumerator for XIVAPI results
     def each
       total = 0
       next_page = 1
@@ -27,6 +29,7 @@ module XIVAPI
       end
     end
 
+    # The next page in the enumeration of results
     def next(page)
       response = request(@client, @endpoint, @params.merge(page: page))
       Page.new(response)

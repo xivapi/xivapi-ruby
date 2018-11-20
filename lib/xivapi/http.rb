@@ -1,7 +1,14 @@
 module XIVAPI
+  # Makes HTTP request to XIVAPI
   module HTTP
+    # Base URL for XIVAPI
     API_BASE = 'https://xivapi.com'.freeze
 
+    # Makes a request to XIVAPI
+    # @param client [XIVAPI::Client] The client making the request
+    # @param endpoint [String, Symbol] The endpoint to request
+    # @param params [Hash] Request parameters
+    # @return the results of the request
     def request(client, endpoint, params = {})
       url = request_url(endpoint)
       query_params = params.merge(client.default_params)
@@ -22,6 +29,17 @@ module XIVAPI
       end
     end
 
+    # Makes a request to XIVAPI for cached data. This is data that must be cached
+    # by XIVAPI before it can be served. This method should be used over the standard
+    # request in order to properly throw custom errors and enable polling. Polling
+    # will continuously call the API until the data is cached and returned.
+    #
+    # @param client [XIVAPI::Client] The client making the request
+    # @param endpoint [String, Symbol] The endpoint to request
+    # @param key [String, Symbol] The results key that stores the cached data
+    # @param params [Hash] Request parameters
+    # @param poll [true, false] Whether or not to poll XIVAPI until data is returned
+    # @return the results of the request
     def request_cached(client, endpoint, key, params = {}, poll = false)
       response = request(client, endpoint, params)
 

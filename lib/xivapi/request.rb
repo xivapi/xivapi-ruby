@@ -1,7 +1,11 @@
+# Collection of requests that can be made to XIVAPI
 module XIVAPI::Request
   include XIVAPI::HTTP
 
+  # The results limit applied to Lodestone requests
   LODESTONE_LIMIT = 50.freeze
+
+  # Options used to retrieve all data when querying a character
   ALL_CHARACTER_DATA = 'AC,FR,FC,FCM,PVP'.freeze
 
   # @param indexes [String, Array <String>] One or more indexes to search on
