@@ -39,10 +39,10 @@ module XIVAPI::Request
       request(self, 'content')
     elsif [*ids].size == 1
       params = { minify: minify ? 1 : 0, columns: [*columns].join(',') }
-      request(self, "#{name.capitalize}/#{[*ids].first}", params)
+      request(self, "#{name}/#{[*ids].first}", params)
     else
       params = { ids: [*ids].join(','), columns: [*columns].join(',') }
-      XIVAPI::Paginator.new(self, params, name.capitalize, limit)
+      XIVAPI::Paginator.new(self, params, name, limit)
     end
   end
 
@@ -66,7 +66,7 @@ module XIVAPI::Request
   # @param columns [String, Array <String>] One or more columns to limit results to
   # @return [XIVAPI::Paginator] Enumerable search results
   def character_search(name: nil, server: nil, columns: [])
-    params = { name: name, server: server&.capitalize, columns: [*columns].join(',') }
+    params = { name: name, server: server, columns: [*columns].join(',') }
     XIVAPI::Paginator.new(self, params, 'character/search', LODESTONE_LIMIT)
   end
 
@@ -105,7 +105,7 @@ module XIVAPI::Request
   # @param columns [String, Array <String>] One or more columns to limit results to
   # @return [XIVAPI::Paginator] Enumerable search results
   def free_company_search(name: nil, server: nil, columns: [])
-    params = { name: name, server: server&.capitalize, columns: [*columns].join(',') }
+    params = { name: name, server: server, columns: [*columns].join(',') }
     XIVAPI::Paginator.new(self, params, 'freecompany/search', LODESTONE_LIMIT)
   end
 
@@ -123,7 +123,7 @@ module XIVAPI::Request
   # @param columns [String, Array <String>] One or more columns to limit results to
   # @return [XIVAPI::Paginator] Enumerable search results
   def linkshell_search(name: nil, server: nil, columns: [])
-    params = { name: name, server: server&.capitalize, columns: [*columns].join(',') }
+    params = { name: name, server: server, columns: [*columns].join(',') }
     XIVAPI::Paginator.new(self, params, 'linkshell/search', LODESTONE_LIMIT)
   end
 
@@ -141,7 +141,7 @@ module XIVAPI::Request
   # @param columns [String, Array <String>] One or more columns to limit results to
   # @return [XIVAPI::Paginator] Enumerable search results
   def pvp_team_search(name: nil, server: nil, columns: [])
-    params = { name: name, server: server&.capitalize, columns: [*columns].join(',') }
+    params = { name: name, server: server, columns: [*columns].join(',') }
     XIVAPI::Paginator.new(self, params, 'pvpteam/search', LODESTONE_LIMIT)
   end
 
