@@ -4,13 +4,16 @@ module XIVAPI
     # Base URL for XIVAPI
     API_BASE = 'https://xivapi.com'.freeze
 
+    # Base URL for the staging environment of XIVAPI
+    STAGING_API_BASE = 'https://staging.xivapi.com'.freeze
+
     # Makes a request to XIVAPI
     # @param client [XIVAPI::Client] The client making the request
     # @param endpoint [String, Symbol] The endpoint to request
     # @param params [Hash] Request parameters
     # @return the results of the request
     def request(client, endpoint, params = {})
-      url = request_url(endpoint)
+      url = request_url(client, endpoint)
       query_params = params.merge(client.default_params)
         .reject { |_, v| v.nil? || v.size == 0 }
 
@@ -63,8 +66,8 @@ module XIVAPI
     end
 
     private
-    def request_url(endpoint)
-      "#{API_BASE}/#{endpoint}"
+    def request_url(client, endpoint)
+      "#{client.staging ? STAGING_API_BASE : API_BASE}/#{endpoint}"
     end
 
     def objectify(response)

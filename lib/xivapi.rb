@@ -25,17 +25,22 @@ module XIVAPI
     # @return [String] The API key
     attr_accessor :api_key
 
+    # @return [true, false] Whether or not to query the staging API instead of production
+    attr_accessor :staging
+
     # Initializes a new client for querying XIVAPI
     # @param api_key [String] API key provided by XIVAPI
     # @param language [String] Requested response langauge
     # @param poll_rate [Integer] Frequency at which to poll when waiting for data to cache
     # @param tags [String, Array<String>] Optional string tag(s) for tracking requests
-    def initialize(api_key: nil, language: :en, poll_rate: 30, tags: nil)
+    # @param staging [true, false] Whether or not to query the staging API instead of production
+    def initialize(api_key: nil, language: :en, poll_rate: 30, tags: nil, staging: false)
       @api_key = api_key
 
       self.language = language
       self.poll_rate = poll_rate
       self.tags = tags if tags
+      self.staging = staging
     end
 
     # @return [String] The language
