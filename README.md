@@ -7,7 +7,7 @@ A Ruby library for [XIVAPI](https://www.xivapi.com/).
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'xivapi', git: 'https://github.com/mattantonelli/xivapi-ruby.git', tag: 'v0.1.1'
+gem 'xivapi', git: 'https://github.com/xivapi/xivapi-ruby.git', tag: 'v0.1.1'
 ```
 
 And then run:
@@ -18,7 +18,7 @@ $ bundle install
 
 ## Documentation
 
-Full documentation for this library can be found [here](https://mattantonelli.github.io/xivapi-ruby/). For basic usage information, please see below.
+Full documentation for this library can be found [here](https://xivapi.github.io/xivapi-ruby/). For basic usage information, please see below.
 
 ## Usage
 
@@ -34,7 +34,7 @@ client = XIVAPI::Client.new(api_key: 'abc123')
 client = XIVAPI::Client.new(api_key: 'abc123', language: 'en', poll_rate: 30, tags: ['cool', 'dude'])
 ```
 
-Now that you have a client, you can use it to contact the API. Examples have been provided below for the various endpoints. For the full list of endpoints and their parameters, please reference the [request documentation](https://mattantonelli.github.io/xivapi-ruby/XIVAPI/Request.html).
+Now that you have a client, you can use it to contact the API. Examples have been provided below for the various endpoints. For the full list of endpoints and their parameters, please reference the [request documentation](https://xivapi.github.io/xivapi-ruby/XIVAPI/Request.html).
 
 ### Response data
 The data returned from the API is automatically converted into [OpenStruct](https://ruby-doc.org/stdlib-2.0.0/libdoc/ostruct/rdoc/OpenStruct.html) objects with snake_cased keys. If the request returns multiple results (e.g. character search), it will be provided to you in the form of an `XIVAPI::Paginator` object. The paginator is [Enumerable](https://ruby-doc.org/core-2.4.1/Enumerable.html), allowing you to access the data with methods like `first`, `each`, `map` and `to_a`.
@@ -150,7 +150,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/mattantonelli/xivapi-ruby.
+Bug reports and pull requests are welcome on GitHub at https://github.com/xivapi/xivapi-ruby.
 
 ## License
 

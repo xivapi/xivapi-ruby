@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{A Ruby library for XIVAPI}
   spec.description   = %q{A Ruby library for XIVAPI (http://www.xivapi.com)}
-  spec.homepage      = "https://github.com/mattantonelli/xivapi-ruby"
+  spec.homepage      = "https://github.com/xivapi/xivapi-ruby"
   spec.license       = "MIT"
 
   spec.files         = Dir.chdir(File.expand_path('..', __FILE__)) do
