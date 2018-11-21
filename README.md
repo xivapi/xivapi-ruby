@@ -1,6 +1,6 @@
 # XIVAPI
 
-A Ruby library for [XIVAPI](http://www.xivapi.com/).
+A Ruby library for [XIVAPI](https://www.xivapi.com/).
 
 ## Installation
 
@@ -16,9 +16,13 @@ And then run:
 $ bundle install
 ```
 
+## Documentation
+
+Full documentation for this library can be found [here](https://mattantonelli.github.io/xivapi-ruby/). For basic usage information, please see below.
+
 ## Usage
 
-Start by initializing a client. You can obtain an API key by creating a new XIVAPI application [here](http://www.xivapi.com/app).
+Start by initializing a client. You can obtain an API key by creating a new XIVAPI application [here](https://www.xivapi.com/app).
 
 ```rb
 require 'xivapi'
@@ -30,7 +34,7 @@ client = XIVAPI::Client.new(api_key: 'abc123')
 client = XIVAPI::Client.new(api_key: 'abc123', language: 'en', poll_rate: 30, tags: ['cool', 'dude'])
 ```
 
-Now that you have a client, you can use it to contact the API. Examples have been provided below for the various endpoints. For the full list of endpoints and their parameters, please reference the [requests](https://github.com/mattantonelli/xivapi-ruby/blob/master/lib/xivapi/request.rb) code and accompanying documentation.
+Now that you have a client, you can use it to contact the API. Examples have been provided below for the various endpoints. For the full list of endpoints and their parameters, please reference the [request documentation](https://mattantonelli.github.io/xivapi-ruby/XIVAPI/Request.html).
 
 ### Response data
 The data returned from the API is automatically converted into [OpenStruct](https://ruby-doc.org/stdlib-2.0.0/libdoc/ostruct/rdoc/OpenStruct.html) objects with snake_cased keys. If the request returns multiple results (e.g. character search), it will be provided to you in the form of an `XIVAPI::Paginator` object. The paginator is [Enumerable](https://ruby-doc.org/core-2.4.1/Enumerable.html), allowing you to access the data with methods like `first`, `each`, `map` and `to_a`.
