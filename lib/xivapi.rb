@@ -12,6 +12,8 @@ require 'ostruct'
 
 # Base module for the XIVAPI library
 module XIVAPI
+  include XIVAPI::Errors
+
   # The allowed language options
   LANGUAGE_OPTIONS = %w(en ja de fr cn kr).freeze
 
