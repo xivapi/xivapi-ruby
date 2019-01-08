@@ -15,14 +15,22 @@ module XIVAPI::Request
   # @param sort_field [String] Column to sort results by
   # @param sort_order [String] Order to sort results by
   # @param limit [Integer] Total number of results to limit to
+  # @param body [Hash] Request body for advanced ElasticSearch queries
   # @param filters [String, Array <String>] One or more filters to search on
   # @param columns [String, Array <String>] One or more columns to limit results to
   # @return [XIVAPI::Paginator] Enumerable search results
-  def search(indexes: [], string: '', string_column: 'Name_en', string_algo: 'wildcard_plus',
-             sort_field: nil, sort_order: nil, limit: 100, filters: [], columns: [])
+  def search(indexes: [], string: '', string_column: nil, string_algo: nil,
+             sort_field: nil, sort_order: nil, limit: 100, body: nil, filters: [], columns: [])
     params = { indexes: [*indexes].join(','), string: string, string_column: string_column, string_algo: string_algo,
                sort_field: sort_field, sort_order: sort_order, filters: [*filters].join(','), columns: [*columns].join(',') }
-    XIVAPI::Paginator.new(self, params, 'search', limit)
+    XIVAPI::Paginator.new(self, params, 'search', limit, body)
+  end
+
+  # @param string [String] String of lore to search for
+  # @param limit [Integer] Total number of results to limit to
+  # @return [XIVAPI::Paginator] Enumerable lore results
+  def lore(string: '', limit: 100)
+    XIVAPI::Paginator.new(self, { string: string }, 'lore', limit)
   end
 
   # @param name [String] Name of the content (e.g. Achievement, Action, Item)
@@ -46,9 +54,11 @@ module XIVAPI::Request
     end
   end
 
+  # @param group [true, false] Group the servers by data center
   # @return [Array<String>] list of servers
-  def servers
-    request(self, 'servers')
+  def servers(group: false)
+    endpoint = group ? 'servers/dc' : 'servers'
+    request(self, endpoint)
   end
 
   # @param id [Integer] Character ID

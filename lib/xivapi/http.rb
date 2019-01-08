@@ -11,14 +11,21 @@ module XIVAPI
     # @param client [XIVAPI::Client] The client making the request
     # @param endpoint [String, Symbol] The endpoint to request
     # @param params [Hash] Request parameters
+    # @param payload [Hash] Request body
     # @return the results of the request
-    def request(client, endpoint, params = {})
+    def request(client, endpoint, params = {}, payload = nil)
       url = request_url(client, endpoint)
       query_params = params.merge(client.default_params)
         .reject { |_, v| v.nil? || v.size == 0 }
 
       begin
-        response = RestClient.get(url, params: query_params)
+        if payload
+          response = RestClient::Request.execute(method: :get, url: url, headers: { params: query_params },
+                                                 payload: payload.to_json)
+        else
+          response = RestClient.get(url, params: query_params)
+        end
+
         body = JSON.parse(response.body)
         objectify(body)
       rescue RestClient::ExceptionWithResponse => e
