@@ -17,9 +17,6 @@ module XIVAPI
   # The allowed language options
   LANGUAGE_OPTIONS = %w(en ja de fr cn kr).freeze
 
-  # The required format for tags
-  TAGS_FORMAT = /^[a-z0-9\-_]+$/i.freeze
-
   # Client for making requests to XIVAPI
   class Client
     include XIVAPI::Request
@@ -34,14 +31,12 @@ module XIVAPI
     # @param api_key [String] API key provided by XIVAPI
     # @param language [String] Requested response langauge
     # @param poll_rate [Integer] Frequency at which to poll when waiting for data to cache
-    # @param tags [String, Array<String>] Optional string tag(s) for tracking requests
     # @param staging [true, false] Whether or not to query the staging API instead of production
-    def initialize(api_key: nil, language: :en, poll_rate: 30, tags: nil, staging: false)
+    def initialize(api_key: nil, language: :en, poll_rate: 5, staging: false)
       @api_key = api_key
 
       self.language = language
       self.poll_rate = poll_rate
-      self.tags = tags if tags
       self.staging = staging
     end
 
@@ -70,21 +65,9 @@ module XIVAPI
       @poll_rate = rate
     end
 
-    # @return [String] The tags sent along with each request
-    def tags
-      @tags
-    end
-
-    # @param tags [String, Array<String>] The tags to be sent along with each request
-    # @return [String] The tags
-    def tags=(tags)
-      raise ArgumentError, 'Invalid tag format' unless [*tags].each { |tag| tag.match?(TAGS_FORMAT) }
-      @tags = [*tags].join(',')
-    end
-
     # @return [Hash] The default parameters for the client
     def default_params
-      { key: @api_key, language: @language, tags: @tags }
+      { key: @api_key, language: @language }
     end
   end
 end

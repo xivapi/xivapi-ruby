@@ -31,7 +31,7 @@ require 'xivapi'
 client = XIVAPI::Client.new(api_key: 'abc123')
 
 # Advanced configuration
-client = XIVAPI::Client.new(api_key: 'abc123', language: 'en', poll_rate: 30, tags: ['cool', 'dude'])
+client = XIVAPI::Client.new(api_key: 'abc123', language: 'en', poll_rate: 5)
 ```
 
 Now that you have a client, you can use it to contact the API. Examples have been provided below for the various endpoints. For the full list of endpoints and their parameters, please reference the [request documentation](https://xivapi.github.io/xivapi-ruby/XIVAPI/Request.html).
