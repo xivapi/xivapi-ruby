@@ -55,10 +55,36 @@ module XIVAPI::Request
   end
 
   # @param group [true, false] Group the servers by data center
-  # @return [Array<String>] list of servers
+  # @return [Array<String>] List of servers
   def servers(group: false)
     endpoint = group ? 'servers/dc' : 'servers'
     request(self, endpoint)
+  end
+
+  # @param server [String] Server to retrieve the market for
+  # @param id [Integer] ID of the item to price
+  # @return [OpenStruct] Maret price results
+  def market_price(server: nil, id: nil)
+    request(self, "market/#{server}/items/#{id}")
+  end
+
+  # @param server [String] Server to retrieve the market for
+  # @param id [Integer] ID of the item to price
+  # @return [OpenStruct] Market history results
+  def market_history(server: nil, id: nil)
+    request(self, "market/#{server}/items/#{id}/history")
+  end
+
+  # @param server [String] Server to retrieve the market for
+  # @param id [Integer] ID of the category to retrieve
+  # @return [Array<OpenStruct>] Market category results
+  def market_category(server: nil, id: nil)
+    request(self, "market/#{server}/category/#{id}")
+  end
+
+  # @return [Array<OpenStruct>] List of Market categories
+  def market_categories
+    request(self, 'market/categories')
   end
 
   # @param id [Integer] Character ID
