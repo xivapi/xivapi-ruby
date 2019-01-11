@@ -60,23 +60,29 @@
       <div id="content"><div id='filecontents'>
 <h1 id="label-XIVAPI">XIVAPI</h1>
 
-<p>A Ruby library for <a href="http://www.xivapi.com/">XIVAPI</a>.</p>
+<p>A Ruby library for <a href="https://www.xivapi.com/">XIVAPI</a>.</p>
 
 <h2 id="label-Installation">Installation</h2>
 
 <p>Add this line to your application&#39;s Gemfile:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>xivapi</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>git:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>https://github.com/mattantonelli/xivapi-ruby.git</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>tag:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>v0.1.1</span><span class='tstring_end'>&#39;</span></span>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>xivapi</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>git:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>https://github.com/xivapi/xivapi-ruby.git</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>tag:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>v0.1.2</span><span class='tstring_end'>&#39;</span></span>
 </code></pre>
 
 <p>And then run:</p>
 
 <pre class="code ruby"><code class="ruby">$ bundle install</code></pre>
 
+<h2 id="label-Documentation">Documentation</h2>
+
+<p>Full documentation for this library can be found <a
+href="https://xivapi.github.io/xivapi-ruby/">here</a>. For basic usage
+information, please see below.</p>
+
 <h2 id="label-Usage">Usage</h2>
 
 <p>Start by initializing a client. You can obtain an API key by creating a new
-XIVAPI application <a href="http://www.xivapi.com/app">here</a>.</p>
+XIVAPI application <a href="https://www.xivapi.com/app">here</a>.</p>
 
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>xivapi</span><span class='tstring_end'>&#39;</span></span>
 
@@ -84,14 +90,14 @@ XIVAPI application <a href="http://www.xivapi.com/app">here</a>.</p>
 </span><span class='id identifier rubyid_client'>client</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="XIVAPI.html" title="XIVAPI (module)">XIVAPI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="XIVAPI/Client.html" title="XIVAPI::Client (class)">Client</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="XIVAPI/Client.html#initialize-instance_method" title="XIVAPI::Client#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='label'>api_key:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>abc123</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
 
 <span class='comment'># Advanced configuration
-</span><span class='id identifier rubyid_client'>client</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="XIVAPI.html" title="XIVAPI (module)">XIVAPI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="XIVAPI/Client.html" title="XIVAPI::Client (class)">Client</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="XIVAPI/Client.html#initialize-instance_method" title="XIVAPI::Client#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='label'>api_key:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>abc123</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>language:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>en</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>poll_rate:</span> <span class='int'>30</span><span class='comma'>,</span> <span class='label'>tags:</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>cool</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>dude</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+</span><span class='id identifier rubyid_client'>client</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="XIVAPI.html" title="XIVAPI (module)">XIVAPI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="XIVAPI/Client.html" title="XIVAPI::Client (class)">Client</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="XIVAPI/Client.html#initialize-instance_method" title="XIVAPI::Client#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='label'>api_key:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>abc123</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>language:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>en</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>poll_rate:</span> <span class='int'>5</span><span class='rparen'>)</span>
 </code></pre>
 
 <p>Now that you have a client, you can use it to contact the API. Examples
 have been provided below for the various endpoints. For the full list of
 endpoints and their parameters, please reference the <a
-href="https://github.com/mattantonelli/xivapi-ruby/blob/master/lib/xivapi/request.rb">requests</a>
-code and accompanying documentation.</p>
+href="https://xivapi.github.io/xivapi-ruby/XIVAPI/Request.html">request
+documentation</a>.</p>
 
 <h3 id="label-Response+data">Response data</h3>
 
@@ -215,7 +221,7 @@ href="https://rubygems.org">rubygems.org</a>.</p>
 <h2 id="label-Contributing">Contributing</h2>
 
 <p>Bug reports and pull requests are welcome on GitHub at <a
-href="https://github.com/mattantonelli/xivapi-ruby">github.com/mattantonelli/xivapi-ruby</a>.</p>
+href="https://github.com/xivapi/xivapi-ruby">github.com/xivapi/xivapi-ruby</a>.</p>
 
 <h2 id="label-License">License</h2>
 
@@ -224,7 +230,7 @@ href="https://opensource.org/licenses/MIT">MIT License</a>.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Wed Nov 21 00:18:56 2018 by
+  Generated on Thu Jan 10 14:20:37 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.16 (ruby-2.4.1).
 </div>

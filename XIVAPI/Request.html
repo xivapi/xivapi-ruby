@@ -437,6 +437,126 @@ a name and not a singe ID will return enumerable results.</p>
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#lore-instance_method" title="#lore (instance method)">#<strong>lore</strong>(string: &#39;&#39;, limit: 100)  &#x21d2; XIVAPI::Paginator </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Enumerable lore results.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#market_categories-instance_method" title="#market_categories (instance method)">#<strong>market_categories</strong>  &#x21d2; Array&lt;OpenStruct&gt; </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>List of Market categories.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#market_category-instance_method" title="#market_category (instance method)">#<strong>market_category</strong>(server: nil, id: nil)  &#x21d2; Array&lt;OpenStruct&gt; </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Market category results.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#market_history-instance_method" title="#market_history (instance method)">#<strong>market_history</strong>(server: nil, id: nil)  &#x21d2; OpenStruct </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Market history results.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#market_price-instance_method" title="#market_price (instance method)">#<strong>market_price</strong>(server: nil, id: nil)  &#x21d2; OpenStruct </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Maret price results.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#patch_list-instance_method" title="#patch_list (instance method)">#<strong>patch_list</strong>  &#x21d2; Array&lt;OpenStruct&gt; </a>
     
 
@@ -509,7 +629,7 @@ a name and not a singe ID will return enumerable results.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#search-instance_method" title="#search (instance method)">#<strong>search</strong>(indexes: [], string: &#39;&#39;, string_column: &#39;Name_en&#39;, string_algo: &#39;wildcard_plus&#39;, sort_field: nil, sort_order: nil, limit: 100, filters: [], columns: [])  &#x21d2; XIVAPI::Paginator </a>
+      <a href="#search-instance_method" title="#search (instance method)">#<strong>search</strong>(indexes: [], string: &#39;&#39;, string_column: nil, string_algo: nil, sort_field: nil, sort_order: nil, limit: 100, body: nil, filters: [], columns: [])  &#x21d2; XIVAPI::Paginator </a>
     
 
     
@@ -533,7 +653,7 @@ a name and not a singe ID will return enumerable results.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#servers-instance_method" title="#servers (instance method)">#<strong>servers</strong>  &#x21d2; Array&lt;String&gt; </a>
+      <a href="#servers-instance_method" title="#servers (instance method)">#<strong>servers</strong>(group: false)  &#x21d2; Array&lt;String&gt; </a>
     
 
     
@@ -686,13 +806,13 @@ a name and not a singe ID will return enumerable results.</p>
       <pre class="lines">
 
 
-59
-60
-61
-62</pre>
+95
+96
+97
+98</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 59</span>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 95</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_character'>character</span><span class='lparen'>(</span><span class='label'>id:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>all_data:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>poll:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='label'>data:</span> <span class='id identifier rubyid_all_data'>all_data</span> <span class='op'>?</span> <span class='const'><span class='object_link'><a href="#ALL_CHARACTER_DATA-constant" title="XIVAPI::Request::ALL_CHARACTER_DATA (constant)">ALL_CHARACTER_DATA</a></span></span> <span class='op'>:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='op'>*</span><span class='id identifier rubyid_columns'>columns</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -783,13 +903,13 @@ a name and not a singe ID will return enumerable results.</p>
       <pre class="lines">
 
 
-76
-77
-78
-79</pre>
+112
+113
+114
+115</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 76</span>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 112</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_character_delete'>character_delete</span><span class='lparen'>(</span><span class='label'>id:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>duplicate_id:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='label'>duplicate:</span> <span class='id identifier rubyid_duplicate_id'>duplicate_id</span> <span class='rbrace'>}</span>
@@ -896,13 +1016,13 @@ a name and not a singe ID will return enumerable results.</p>
       <pre class="lines">
 
 
-68
-69
-70
-71</pre>
+104
+105
+106
+107</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 68</span>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 104</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_character_search'>character_search</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>server:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='label'>server:</span> <span class='id identifier rubyid_server'>server</span><span class='comma'>,</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='op'>*</span><span class='id identifier rubyid_columns'>columns</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -977,12 +1097,12 @@ a name and not a singe ID will return enumerable results.</p>
       <pre class="lines">
 
 
-83
-84
-85</pre>
+119
+120
+121</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 83</span>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 119</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_character_update'>character_update</span><span class='lparen'>(</span><span class='label'>id:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>character/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/update</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='int'>1</span>
@@ -1056,12 +1176,12 @@ a name and not a singe ID will return enumerable results.</p>
       <pre class="lines">
 
 
-89
-90
-91</pre>
+125
+126
+127</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 89</span>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 125</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_character_verified?'>character_verified?</span><span class='lparen'>(</span><span class='label'>id:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>character/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/verification</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_verification_token_pass'>verification_token_pass</span>
@@ -1203,20 +1323,20 @@ a name and not a singe ID will return enumerable results</p>
       <pre class="lines">
 
 
-37
-38
-39
-40
-41
-42
-43
-44
 45
 46
-47</pre>
+47
+48
+49
+50
+51
+52
+53
+54
+55</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 37</span>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_content'>content</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>ids:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>minify:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>limit:</span> <span class='int'>100</span><span class='comma'>,</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -1346,13 +1466,13 @@ a name and not a singe ID will return enumerable results</p>
       <pre class="lines">
 
 
-98
-99
-100
-101</pre>
+134
+135
+136
+137</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 98</span>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 134</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_free_company'>free_company</span><span class='lparen'>(</span><span class='label'>id:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>members:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>poll:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='label'>data:</span> <span class='id identifier rubyid_members'>members</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>FCM</span><span class='tstring_end'>&#39;</span></span> <span class='op'>:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='op'>*</span><span class='id identifier rubyid_columns'>columns</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -1459,13 +1579,13 @@ a name and not a singe ID will return enumerable results</p>
       <pre class="lines">
 
 
-107
-108
-109
-110</pre>
+143
+144
+145
+146</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 107</span>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 143</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_free_company_search'>free_company_search</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>server:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='label'>server:</span> <span class='id identifier rubyid_server'>server</span><span class='comma'>,</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='op'>*</span><span class='id identifier rubyid_columns'>columns</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -1572,13 +1692,13 @@ a name and not a singe ID will return enumerable results</p>
       <pre class="lines">
 
 
-116
-117
-118
-119</pre>
+152
+153
+154
+155</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 116</span>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 152</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_linkshell'>linkshell</span><span class='lparen'>(</span><span class='label'>id:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>poll:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='op'>*</span><span class='id identifier rubyid_columns'>columns</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -1685,13 +1805,13 @@ a name and not a singe ID will return enumerable results</p>
       <pre class="lines">
 
 
-125
-126
-127
-128</pre>
+161
+162
+163
+164</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 125</span>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 161</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_linkshell_search'>linkshell_search</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>server:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='label'>server:</span> <span class='id identifier rubyid_server'>server</span><span class='comma'>,</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='op'>*</span><span class='id identifier rubyid_columns'>columns</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -1766,17 +1886,456 @@ a name and not a singe ID will return enumerable results</p>
       <pre class="lines">
 
 
-150
-151
-152
-153</pre>
+186
+187
+188
+189</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 150</span>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 186</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lodestone'>lodestone</span><span class='lparen'>(</span><span class='id identifier rubyid_category'>category</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_endpoint'>endpoint</span> <span class='op'>=</span> <span class='id identifier rubyid_category'>category</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>_</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>lodestone/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_endpoint'>endpoint</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="lore-instance_method">
+  
+    #<strong>lore</strong>(string: &#39;&#39;, limit: 100)  &#x21d2; <tt><span class='object_link'><a href="Paginator.html" title="XIVAPI::Paginator (class)">XIVAPI::Paginator</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns Enumerable lore results</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>string</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>String of lore to search for</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>limit</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Total number of results to limit to</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Paginator.html" title="XIVAPI::Paginator (class)">XIVAPI::Paginator</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Enumerable lore results</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+32
+33
+34</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 32</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_lore'>lore</span><span class='lparen'>(</span><span class='label'>string:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>limit:</span> <span class='int'>100</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="../XIVAPI.html" title="XIVAPI (module)">XIVAPI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Paginator.html" title="XIVAPI::Paginator (class)">Paginator</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Paginator.html#initialize-instance_method" title="XIVAPI::Paginator#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>string:</span> <span class='id identifier rubyid_string'>string</span> <span class='rbrace'>}</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>lore</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="market_categories-instance_method">
+  
+    #<strong>market_categories</strong>  &#x21d2; <tt>Array&lt;OpenStruct&gt;</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns List of Market categories</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;OpenStruct&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>List of Market categories</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+86
+87
+88</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 86</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_market_categories'>market_categories</span>
+  <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>market/categories</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="market_category-instance_method">
+  
+    #<strong>market_category</strong>(server: nil, id: nil)  &#x21d2; <tt>Array&lt;OpenStruct&gt;</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns Market category results</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>server</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Server to retrieve the market for</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>id</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>ID of the category to retrieve</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;OpenStruct&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Market category results</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+81
+82
+83</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 81</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_market_category'>market_category</span><span class='lparen'>(</span><span class='label'>server:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>id:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>market/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_server'>server</span><span class='embexpr_end'>}</span><span class='tstring_content'>/category/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="market_history-instance_method">
+  
+    #<strong>market_history</strong>(server: nil, id: nil)  &#x21d2; <tt>OpenStruct</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns Market history results</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>server</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Server to retrieve the market for</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>id</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>ID of the item to price</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>OpenStruct</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Market history results</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+74
+75
+76</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 74</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_market_history'>market_history</span><span class='lparen'>(</span><span class='label'>server:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>id:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>market/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_server'>server</span><span class='embexpr_end'>}</span><span class='tstring_content'>/items/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/history</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="market_price-instance_method">
+  
+    #<strong>market_price</strong>(server: nil, id: nil)  &#x21d2; <tt>OpenStruct</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns Maret price results</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>server</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Server to retrieve the market for</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>id</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>ID of the item to price</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>OpenStruct</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Maret price results</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+67
+68
+69</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 67</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_market_price'>market_price</span><span class='lparen'>(</span><span class='label'>server:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>id:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>market/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_server'>server</span><span class='embexpr_end'>}</span><span class='tstring_content'>/items/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1827,12 +2386,12 @@ a name and not a singe ID will return enumerable results</p>
       <pre class="lines">
 
 
-156
-157
-158</pre>
+192
+193
+194</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 156</span>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 192</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_patch_list'>patch_list</span>
   <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>patchlist</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1938,13 +2497,13 @@ a name and not a singe ID will return enumerable results</p>
       <pre class="lines">
 
 
-134
-135
-136
-137</pre>
+170
+171
+172
+173</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 134</span>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 170</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pvp_team'>pvp_team</span><span class='lparen'>(</span><span class='label'>id:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>poll:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='op'>*</span><span class='id identifier rubyid_columns'>columns</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -2051,13 +2610,13 @@ a name and not a singe ID will return enumerable results</p>
       <pre class="lines">
 
 
-143
-144
-145
-146</pre>
+179
+180
+181
+182</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 143</span>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 179</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pvp_team_search'>pvp_team_search</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>server:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='label'>server:</span> <span class='id identifier rubyid_server'>server</span><span class='comma'>,</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='op'>*</span><span class='id identifier rubyid_columns'>columns</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -2071,7 +2630,7 @@ a name and not a singe ID will return enumerable results</p>
       <div class="method_details ">
   <h3 class="signature " id="search-instance_method">
   
-    #<strong>search</strong>(indexes: [], string: &#39;&#39;, string_column: &#39;Name_en&#39;, string_algo: &#39;wildcard_plus&#39;, sort_field: nil, sort_order: nil, limit: 100, filters: [], columns: [])  &#x21d2; <tt><span class='object_link'><a href="Paginator.html" title="XIVAPI::Paginator (class)">XIVAPI::Paginator</a></span></tt> 
+    #<strong>search</strong>(indexes: [], string: &#39;&#39;, string_column: nil, string_algo: nil, sort_field: nil, sort_order: nil, limit: 100, body: nil, filters: [], columns: [])  &#x21d2; <tt><span class='object_link'><a href="Paginator.html" title="XIVAPI::Paginator (class)">XIVAPI::Paginator</a></span></tt> 
   
 
   
@@ -2203,6 +2762,22 @@ a name and not a singe ID will return enumerable results</p>
   
     <li>
       
+        <span class='name'>body</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Request body for advanced ElasticSearch queries</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
         <span class='name'>filters</span>
       
       
@@ -2260,21 +2835,21 @@ a name and not a singe ID will return enumerable results</p>
       <pre class="lines">
 
 
-21
 22
 23
 24
 25
-26</pre>
+26
+27</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 22</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_search'>search</span><span class='lparen'>(</span><span class='label'>indexes:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>string:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>string_column:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Name_en</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>string_algo:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>wildcard_plus</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span>
-           <span class='label'>sort_field:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>sort_order:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>limit:</span> <span class='int'>100</span><span class='comma'>,</span> <span class='label'>filters:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_search'>search</span><span class='lparen'>(</span><span class='label'>indexes:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>string:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>string_column:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>string_algo:</span> <span class='kw'>nil</span><span class='comma'>,</span>
+           <span class='label'>sort_field:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>sort_order:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>limit:</span> <span class='int'>100</span><span class='comma'>,</span> <span class='label'>body:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>filters:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='label'>indexes:</span> <span class='lbracket'>[</span><span class='op'>*</span><span class='id identifier rubyid_indexes'>indexes</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='label'>string:</span> <span class='id identifier rubyid_string'>string</span><span class='comma'>,</span> <span class='label'>string_column:</span> <span class='id identifier rubyid_string_column'>string_column</span><span class='comma'>,</span> <span class='label'>string_algo:</span> <span class='id identifier rubyid_string_algo'>string_algo</span><span class='comma'>,</span>
              <span class='label'>sort_field:</span> <span class='id identifier rubyid_sort_field'>sort_field</span><span class='comma'>,</span> <span class='label'>sort_order:</span> <span class='id identifier rubyid_sort_order'>sort_order</span><span class='comma'>,</span> <span class='label'>filters:</span> <span class='lbracket'>[</span><span class='op'>*</span><span class='id identifier rubyid_filters'>filters</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='op'>*</span><span class='id identifier rubyid_columns'>columns</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
-  <span class='const'><span class='object_link'><a href="../XIVAPI.html" title="XIVAPI (module)">XIVAPI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Paginator.html" title="XIVAPI::Paginator (class)">Paginator</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Paginator.html#initialize-instance_method" title="XIVAPI::Paginator#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>search</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="../XIVAPI.html" title="XIVAPI (module)">XIVAPI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Paginator.html" title="XIVAPI::Paginator (class)">Paginator</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Paginator.html#initialize-instance_method" title="XIVAPI::Paginator#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>search</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_limit'>limit</span><span class='comma'>,</span> <span class='id identifier rubyid_body'>body</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2284,7 +2859,7 @@ a name and not a singe ID will return enumerable results</p>
       <div class="method_details ">
   <h3 class="signature " id="servers-instance_method">
   
-    #<strong>servers</strong>  &#x21d2; <tt>Array&lt;String&gt;</tt> 
+    #<strong>servers</strong>(group: false)  &#x21d2; <tt>Array&lt;String&gt;</tt> 
   
 
   
@@ -2293,13 +2868,33 @@ a name and not a singe ID will return enumerable results</p>
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Returns list of servers</p>
+<p>Returns List of servers</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>group</span>
+      
+      
+        <span class='type'>(<tt>true</tt>, <tt>false</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Group the servers by data center</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -2312,7 +2907,7 @@ a name and not a singe ID will return enumerable results</p>
       
         &mdash;
         <div class='inline'>
-<p>list of servers</p>
+<p>List of servers</p>
 </div>
       
     </li>
@@ -2325,15 +2920,17 @@ a name and not a singe ID will return enumerable results</p>
       <pre class="lines">
 
 
-50
-51
-52</pre>
+59
+60
+61
+62</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 50</span>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 59</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_servers'>servers</span>
-  <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>servers</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_servers'>servers</span><span class='lparen'>(</span><span class='label'>group:</span> <span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_endpoint'>endpoint</span> <span class='op'>=</span> <span class='id identifier rubyid_group'>group</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>servers/dc</span><span class='tstring_end'>&#39;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>servers</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_endpoint'>endpoint</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2345,7 +2942,7 @@ a name and not a singe ID will return enumerable results</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Nov 21 00:18:57 2018 by
+  Generated on Thu Jan 10 14:20:37 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.16 (ruby-2.4.1).
 </div>

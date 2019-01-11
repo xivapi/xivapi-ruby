@@ -160,7 +160,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#request-instance_method" title="#request (instance method)">#<strong>request</strong>(client, endpoint, params = {})  &#x21d2; Object </a>
+      <a href="#request-instance_method" title="#request (instance method)">#<strong>request</strong>(client, endpoint, params = {}, payload = nil)  &#x21d2; Object </a>
     
 
     
@@ -217,7 +217,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="request-instance_method">
   
-    #<strong>request</strong>(client, endpoint, params = {})  &#x21d2; <tt>Object</tt> 
+    #<strong>request</strong>(client, endpoint, params = {}, payload = nil)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -285,6 +285,24 @@
       
     </li>
   
+    <li>
+      
+        <span class='name'>payload</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Request body</p>
+</div>
+      
+    </li>
+  
 </ul>
 
 <p class="tag_title">Returns:</p>
@@ -312,7 +330,6 @@
       <pre class="lines">
 
 
-15
 16
 17
 18
@@ -330,25 +347,38 @@
 30
 31
 32
-33</pre>
+33
+34
+35
+36
+37
+38
+39
+40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xivapi/http.rb', line 15</span>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/http.rb', line 16</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='id identifier rubyid_client'>client</span><span class='comma'>,</span> <span class='id identifier rubyid_endpoint'>endpoint</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='id identifier rubyid_client'>client</span><span class='comma'>,</span> <span class='id identifier rubyid_endpoint'>endpoint</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='id identifier rubyid_payload'>payload</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_url'>url</span> <span class='op'>=</span> <span class='id identifier rubyid_request_url'>request_url</span><span class='lparen'>(</span><span class='id identifier rubyid_client'>client</span><span class='comma'>,</span> <span class='id identifier rubyid_endpoint'>endpoint</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_query_params'>query_params</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_default_params'>default_params</span><span class='rparen'>)</span>
     <span class='period'>.</span><span class='id identifier rubyid_reject'>reject</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid__'>_</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='int'>0</span> <span class='rbrace'>}</span>
 
   <span class='kw'>begin</span>
-    <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>RestClient</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span><span class='comma'>,</span> <span class='label'>params:</span> <span class='id identifier rubyid_query_params'>query_params</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_payload'>payload</span>
+      <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>RestClient</span><span class='op'>::</span><span class='const'>Request</span><span class='period'>.</span><span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='label'>method:</span> <span class='symbol'>:get</span><span class='comma'>,</span> <span class='label'>url:</span> <span class='id identifier rubyid_url'>url</span><span class='comma'>,</span> <span class='label'>headers:</span> <span class='lbrace'>{</span> <span class='label'>params:</span> <span class='id identifier rubyid_query_params'>query_params</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+                                             <span class='label'>payload:</span> <span class='id identifier rubyid_payload'>payload</span><span class='period'>.</span><span class='id identifier rubyid_to_json'>to_json</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>RestClient</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span><span class='comma'>,</span> <span class='label'>params:</span> <span class='id identifier rubyid_query_params'>query_params</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+
     <span class='id identifier rubyid_body'>body</span> <span class='op'>=</span> <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_objectify'>objectify</span><span class='lparen'>(</span><span class='id identifier rubyid_body'>body</span><span class='rparen'>)</span>
   <span class='kw'>rescue</span> <span class='const'>RestClient</span><span class='op'>::</span><span class='const'>ExceptionWithResponse</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_http_code'>http_code</span> <span class='op'>==</span> <span class='int'>429</span>
-      <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../XIVAPI.html" title="XIVAPI (module)">XIVAPI</a></span></span><span class='op'>::</span><span class='const'>RateLimitError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../XIVAPI.html" title="XIVAPI (module)">XIVAPI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Errors/RateLimitError.html" title="XIVAPI::Errors::RateLimitError (class)">RateLimitError</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Errors/RateLimitError.html#initialize-instance_method" title="XIVAPI::Errors::RateLimitError#initialize (method)">new</a></span></span>
     <span class='kw'>else</span>
-      <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../XIVAPI.html" title="XIVAPI (module)">XIVAPI</a></span></span><span class='op'>::</span><span class='const'>RequestError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_response'>response</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../XIVAPI.html" title="XIVAPI (module)">XIVAPI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Errors/RequestError.html" title="XIVAPI::Errors::RequestError (class)">RequestError</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Errors/RequestError.html#initialize-instance_method" title="XIVAPI::Errors::RequestError#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_response'>response</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
   <span class='kw'>rescue</span> <span class='const'>RestClient</span><span class='op'>::</span><span class='const'>Exception</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid_e'>e</span>
@@ -495,13 +525,6 @@ and returned.</p>
       <pre class="lines">
 
 
-46
-47
-48
-49
-50
-51
-52
 53
 54
 55
@@ -515,28 +538,35 @@ and returned.</p>
 63
 64
 65
-66</pre>
+66
+67
+68
+69
+70
+71
+72
+73</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xivapi/http.rb', line 46</span>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/http.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_request_cached'>request_cached</span><span class='lparen'>(</span><span class='id identifier rubyid_client'>client</span><span class='comma'>,</span> <span class='id identifier rubyid_endpoint'>endpoint</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='id identifier rubyid_poll'>poll</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='id identifier rubyid_client'>client</span><span class='comma'>,</span> <span class='id identifier rubyid_endpoint'>endpoint</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
 
   <span class='kw'>case</span><span class='lparen'>(</span><span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_info'>info</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_state'>state</span><span class='rparen'>)</span>
   <span class='kw'>when</span> <span class='int'>0</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../XIVAPI.html" title="XIVAPI (module)">XIVAPI</a></span></span><span class='op'>::</span><span class='const'>ContentNotAvailable</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../XIVAPI.html" title="XIVAPI (module)">XIVAPI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Errors/ContentNotAvailable.html" title="XIVAPI::Errors::ContentNotAvailable (class)">ContentNotAvailable</a></span></span>
   <span class='kw'>when</span> <span class='int'>1</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_poll'>poll</span>
       <span class='id identifier rubyid_sleep'>sleep</span><span class='lparen'>(</span><span class='id identifier rubyid_client'>client</span><span class='period'>.</span><span class='id identifier rubyid_poll_rate'>poll_rate</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_request_cached'>request_cached</span><span class='lparen'>(</span><span class='id identifier rubyid_client'>client</span><span class='comma'>,</span> <span class='id identifier rubyid_endpoint'>endpoint</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='comma'>,</span> <span class='id identifier rubyid_poll'>poll</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
   <span class='kw'>when</span> <span class='int'>3</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../XIVAPI.html" title="XIVAPI (module)">XIVAPI</a></span></span><span class='op'>::</span><span class='const'>ContentNotFound</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../XIVAPI.html" title="XIVAPI (module)">XIVAPI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Errors/ContentNotFound.html" title="XIVAPI::Errors::ContentNotFound (class)">ContentNotFound</a></span></span>
   <span class='kw'>when</span> <span class='int'>4</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../XIVAPI.html" title="XIVAPI (module)">XIVAPI</a></span></span><span class='op'>::</span><span class='const'>ContentBlacklisted</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../XIVAPI.html" title="XIVAPI (module)">XIVAPI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Errors/ContentBlacklisted.html" title="XIVAPI::Errors::ContentBlacklisted (class)">ContentBlacklisted</a></span></span>
   <span class='kw'>when</span> <span class='int'>5</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../XIVAPI.html" title="XIVAPI (module)">XIVAPI</a></span></span><span class='op'>::</span><span class='const'>ContentPrivate</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../XIVAPI.html" title="XIVAPI (module)">XIVAPI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Errors/ContentPrivate.html" title="XIVAPI::Errors::ContentPrivate (class)">ContentPrivate</a></span></span>
   <span class='kw'>end</span>
 
   <span class='id identifier rubyid_response'>response</span>
@@ -551,7 +581,7 @@ and returned.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Nov 21 00:18:57 2018 by
+  Generated on Thu Jan 10 14:20:37 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.16 (ruby-2.4.1).
 </div>
