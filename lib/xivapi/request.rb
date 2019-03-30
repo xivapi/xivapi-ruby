@@ -107,14 +107,6 @@ module XIVAPI::Request
   end
 
   # @param id [Integer] Character ID
-  # @param duplicate_id [Integer] Duplicate character ID
-  # @return [true, false] Whether or not the character was deleted successfully
-  def character_delete(id: nil, duplicate_id: nil)
-    params = { duplicate: duplicate_id }
-    !!request(self, "character/#{id}/delete", params)
-  end
-
-  # @param id [Integer] Character ID
   # @return [true, false] Whether or not the character update was requested successfully
   def character_update(id: nil)
     request(self, "character/#{id}/update") == 1
