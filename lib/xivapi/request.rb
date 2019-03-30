@@ -61,25 +61,25 @@ module XIVAPI::Request
     request(self, endpoint)
   end
 
-  # @param server [String] Server to retrieve the market for
-  # @param id [Integer] ID of the item to price
-  # @return [OpenStruct] Maret price results
-  def market_price(server: nil, id: nil)
-    request(self, "market/#{server}/items/#{id}")
-  end
+  # @param ids [Integer, Array<Integer>] ID(s) of the item(s) to look up
+  # @param servers [String, Array<String>] Server(s) to retrieve the market for
+  # @param data_center [String] Data center to retrieve the market for
+  # @param max_history [Integer] The maximum amount of history to retrieve
+  # @param columns [String, Array <String>] One or more columns to limit results to
+  # @return [OpenStruct] Market price results
+  def market(ids: [], servers: [], data_center: nil, max_history: nil, columns: [])
+    ids, server_names = [*ids], [*servers]
+    params = { max_history: max_history, columns: [*columns].join(',') }
 
-  # @param server [String] Server to retrieve the market for
-  # @param id [Integer] ID of the item to price
-  # @return [OpenStruct] Market history results
-  def market_history(server: nil, id: nil)
-    request(self, "market/#{server}/items/#{id}/history")
-  end
-
-  # @param server [String] Server to retrieve the market for
-  # @param id [Integer] ID of the category to retrieve
-  # @return [Array<OpenStruct>] Market category results
-  def market_category(server: nil, id: nil)
-    request(self, "market/#{server}/category/#{id}")
+    if ids.size > 1
+      params.merge!(ids: ids.join(','), dc: data_center, servers: server_names.join(','))
+      request(self, 'market/items', params)
+    elsif data_center || server_names.size > 1 || server_names[0].match?(',')
+      params.merge!(dc: data_center, servers: server_names.join(','))
+      request(self, "market/item/#{ids.first}", params)
+    else
+      request(self, "market/#{server_names.first}/item/#{ids.first}", params)
+    end
   end
 
   # @return [Array<OpenStruct>] List of Market categories
