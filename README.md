@@ -22,7 +22,7 @@ Full documentation for this library can be found [here](https://xivapi.github.io
 
 ## Usage
 
-Start by initializing a client. You can obtain an API key by creating a new XIVAPI application [here](https://www.xivapi.com/app).
+Start by initializing a client. You can obtain an API key by signing in to XIVAPI [here](https://www.xivapi.com/app). The key is available under the Dev Account page after signing in.
 
 ```rb
 require 'xivapi'

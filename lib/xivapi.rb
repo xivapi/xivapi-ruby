@@ -67,7 +67,7 @@ module XIVAPI
 
     # @return [Hash] The default parameters for the client
     def default_params
-      { key: @api_key, language: @language }
+      { private_key: @api_key, language: @language }
     end
   end
 end
