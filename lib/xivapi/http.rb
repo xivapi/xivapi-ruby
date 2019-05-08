@@ -51,6 +51,11 @@ module XIVAPI
     # @param poll [true, false] Whether or not to poll XIVAPI until data is returned
     # @return the results of the request
     def request_cached(client, endpoint, key, params = {}, poll = false)
+      columns = params[:columns]
+      unless columns.empty? || columns.match?('Info')
+        params[:columns] = columns.split(',').push('Info').join(',')
+      end
+
       response = request(client, endpoint, params)
 
       case(response.info[key].state)
