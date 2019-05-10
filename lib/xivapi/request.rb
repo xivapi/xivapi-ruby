@@ -97,6 +97,15 @@ module XIVAPI::Request
     request_cached(self, "character/#{id}", :character, params, poll)
   end
 
+  # @param ids [String, Array<Integer>] Character IDs
+  # @param all_data [true, false] Return the full set of character data
+  # @param columns [String, Array <String>] One or more columns to limit results to
+  # @return [Array<OpenStruct>] The requested characters
+  def characters(ids: nil, all_data: false, columns: [])
+    body = { ids: [*ids].join(','), data: all_data ? ALL_CHARACTER_DATA : nil, columns: [*columns].join(',') }
+    request(self, 'characters', {}, body)
+  end
+
   # @param name [String] Character name
   # @param server [String] Character server
   # @param columns [String, Array <String>] One or more columns to limit results to
