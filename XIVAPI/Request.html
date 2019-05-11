@@ -243,7 +243,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#character_verified%3F-instance_method" title="#character_verified? (instance method)">#<strong>character_verified?</strong>(id: nil)  &#x21d2; true, false </a>
+      <a href="#character_verified%3F-instance_method" title="#character_verified? (instance method)">#<strong>character_verified?</strong>(id: nil, token: nil)  &#x21d2; true, false </a>
     
 
     
@@ -970,7 +970,7 @@ a name and not a singe ID will return enumerable results.</p>
       <div class="method_details ">
   <h3 class="signature " id="character_verified?-instance_method">
   
-    #<strong>character_verified?</strong>(id: nil)  &#x21d2; <tt>true</tt>, <tt>false</tt> 
+    #<strong>character_verified?</strong>(id: nil, token: nil)  &#x21d2; <tt>true</tt>, <tt>false</tt> 
   
 
   
@@ -1004,6 +1004,22 @@ a name and not a singe ID will return enumerable results.</p>
       
     </li>
   
+    <li>
+      
+        <span class='name'>token</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Verification token to check for</p>
+</div>
+      
+    </li>
+  
 </ul>
 
 <p class="tag_title">Returns:</p>
@@ -1031,15 +1047,15 @@ a name and not a singe ID will return enumerable results.</p>
       <pre class="lines">
 
 
-126
 127
-128</pre>
+128
+129</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 126</span>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 127</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_character_verified?'>character_verified?</span><span class='lparen'>(</span><span class='label'>id:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>character/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/verification</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_verification_token_pass'>verification_token_pass</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_character_verified?'>character_verified?</span><span class='lparen'>(</span><span class='label'>id:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>token:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>character/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_id'>id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/verification</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span> <span class='label'>token:</span> <span class='id identifier rubyid_token'>token</span> <span class='rbrace'>}</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_pass'>pass</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1434,13 +1450,13 @@ a name and not a singe ID will return enumerable results</p>
       <pre class="lines">
 
 
-135
 136
 137
-138</pre>
+138
+139</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 135</span>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 136</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_free_company'>free_company</span><span class='lparen'>(</span><span class='label'>id:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>members:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>poll:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='label'>data:</span> <span class='id identifier rubyid_members'>members</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>FCM</span><span class='tstring_end'>&#39;</span></span> <span class='op'>:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='op'>*</span><span class='id identifier rubyid_columns'>columns</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -1547,13 +1563,13 @@ a name and not a singe ID will return enumerable results</p>
       <pre class="lines">
 
 
-144
 145
 146
-147</pre>
+147
+148</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 144</span>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 145</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_free_company_search'>free_company_search</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>server:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='label'>server:</span> <span class='id identifier rubyid_server'>server</span><span class='comma'>,</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='op'>*</span><span class='id identifier rubyid_columns'>columns</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -1660,13 +1676,13 @@ a name and not a singe ID will return enumerable results</p>
       <pre class="lines">
 
 
-153
 154
 155
-156</pre>
+156
+157</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 153</span>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 154</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_linkshell'>linkshell</span><span class='lparen'>(</span><span class='label'>id:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>poll:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='op'>*</span><span class='id identifier rubyid_columns'>columns</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -1773,13 +1789,13 @@ a name and not a singe ID will return enumerable results</p>
       <pre class="lines">
 
 
-162
 163
 164
-165</pre>
+165
+166</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 162</span>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 163</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_linkshell_search'>linkshell_search</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>server:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='label'>server:</span> <span class='id identifier rubyid_server'>server</span><span class='comma'>,</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='op'>*</span><span class='id identifier rubyid_columns'>columns</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -1854,13 +1870,13 @@ a name and not a singe ID will return enumerable results</p>
       <pre class="lines">
 
 
-187
 188
 189
-190</pre>
+190
+191</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 187</span>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 188</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lodestone'>lodestone</span><span class='lparen'>(</span><span class='id identifier rubyid_category'>category</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_endpoint'>endpoint</span> <span class='op'>=</span> <span class='id identifier rubyid_category'>category</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>_</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -2234,12 +2250,12 @@ a name and not a singe ID will return enumerable results</p>
       <pre class="lines">
 
 
-193
 194
-195</pre>
+195
+196</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 193</span>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 194</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_patch_list'>patch_list</span>
   <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>patchlist</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -2345,13 +2361,13 @@ a name and not a singe ID will return enumerable results</p>
       <pre class="lines">
 
 
-171
 172
 173
-174</pre>
+174
+175</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 171</span>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 172</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pvp_team'>pvp_team</span><span class='lparen'>(</span><span class='label'>id:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>poll:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='op'>*</span><span class='id identifier rubyid_columns'>columns</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -2458,13 +2474,13 @@ a name and not a singe ID will return enumerable results</p>
       <pre class="lines">
 
 
-180
 181
 182
-183</pre>
+183
+184</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 180</span>
+      <pre class="code"><span class="info file"># File 'lib/xivapi/request.rb', line 181</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pvp_team_search'>pvp_team_search</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>server:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='label'>server:</span> <span class='id identifier rubyid_server'>server</span><span class='comma'>,</span> <span class='label'>columns:</span> <span class='lbracket'>[</span><span class='op'>*</span><span class='id identifier rubyid_columns'>columns</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>,</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -2790,7 +2806,7 @@ a name and not a singe ID will return enumerable results</p>
 </div>
 
       <div id="footer">
-  Generated on Fri May 10 22:35:54 2019 by
+  Generated on Sat May 11 23:09:30 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.19 (ruby-2.4.1).
 </div>
