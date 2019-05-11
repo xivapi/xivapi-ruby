@@ -122,9 +122,10 @@ module XIVAPI::Request
   end
 
   # @param id [Integer] Character ID
+  # @param token [String] Verification token to check for
   # @return [true, false] Whether or not the character is verified
-  def character_verified?(id: nil)
-    request(self, "character/#{id}/verification").verification_token_pass
+  def character_verified?(id: nil, token: nil)
+    request(self, "character/#{id}/verification", { token: token }).pass
   end
 
   # @param id [Integer] Free company ID

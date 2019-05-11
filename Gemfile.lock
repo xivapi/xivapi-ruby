@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    xivapi (0.2.2)
+    xivapi (0.2.3)
       rest-client (~> 2.0.2)
 
 GEM
@@ -23,6 +23,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.5)
+    yard (0.9.19)
 
 PLATFORMS
   ruby
@@ -31,6 +32,7 @@ DEPENDENCIES
   bundler (~> 1.16)
   rake (~> 10.0)
   xivapi!
+  yard (~> 0.9.19)
 
 BUNDLED WITH
    1.16.4
