@@ -94,22 +94,17 @@ module XIVAPI::Request
   # @param columns [String, Array <String>] One or more columns to limit results to
   # @return [OpenStruct] The requested character
   def character(id: nil, all_data: false, poll: false, data: [], columns: [])
-    if all_data
-      data = ALL_CHARACTER_DATA
-    else
-      data = [*data].join(',')
-    end
-
-    params = { data: data, columns: [*columns].join(',') }
+    params = { data: character_data(all_data, data), columns: [*columns].join(',') }
     request_cached(self, "character/#{id}", :character, params, poll)
   end
 
   # @param ids [String, Array<Integer>] Character IDs
   # @param all_data [true, false] Return the full set of character data
+  # @param data [String, Array <String>] Additional data to request, see: https://xivapi.com/docs/Character#character
   # @param columns [String, Array <String>] One or more columns to limit results to
   # @return [Array<OpenStruct>] The requested characters
-  def characters(ids: nil, all_data: false, columns: [])
-    body = { ids: [*ids].join(','), data: all_data ? ALL_CHARACTER_DATA : nil, columns: [*columns].join(',') }
+  def characters(ids: nil, all_data: false, data: [], columns: [])
+    body = { ids: [*ids].join(','), data: character_data(all_data, data), columns: [*columns].join(',') }
     request(self, 'characters', {}, body)
   end
 
@@ -200,5 +195,10 @@ module XIVAPI::Request
   # @return [Array<OpenStruct>] List of game patches
   def patch_list
     request(self, 'patchlist')
+  end
+
+  private
+  def character_data(all_data, data)
+    all_data ? ALL_CHARACTER_DATA : [*data].join(',')
   end
 end
