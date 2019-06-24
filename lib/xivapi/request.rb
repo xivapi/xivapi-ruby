@@ -90,10 +90,17 @@ module XIVAPI::Request
   # @param id [Integer] Character ID
   # @param all_data [true, false] Return the full set of character data
   # @param poll [true, false] Continuously call the API until a result is cached and returned
+  # @param data [String, Array <String>] Additional data to request, see: https://xivapi.com/docs/Character#character
   # @param columns [String, Array <String>] One or more columns to limit results to
   # @return [OpenStruct] The requested character
-  def character(id: nil, all_data: false, poll: false, columns: [])
-    params = { data: all_data ? ALL_CHARACTER_DATA : nil, columns: [*columns].join(',') }
+  def character(id: nil, all_data: false, poll: false, data: [], columns: [])
+    if all_data
+      data = ALL_CHARACTER_DATA
+    else
+      data = [*data].join(',')
+    end
+
+    params = { data: data, columns: [*columns].join(',') }
     request_cached(self, "character/#{id}", :character, params, poll)
   end
 
