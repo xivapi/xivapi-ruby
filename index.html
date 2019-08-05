@@ -66,7 +66,7 @@
 
 <p>Add this line to your application&#39;s Gemfile:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>xivapi</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>git:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>https://github.com/xivapi/xivapi-ruby.git</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>tag:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>v0.2.5</span><span class='tstring_end'>&#39;</span></span>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>xivapi</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>git:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>https://github.com/xivapi/xivapi-ruby.git</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>tag:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>v0.3.0</span><span class='tstring_end'>&#39;</span></span>
 </code></pre>
 
 <p>And then run:</p>
@@ -91,7 +91,7 @@ under the Dev Account page after signing in.</p>
 </span><span class='id identifier rubyid_client'>client</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="XIVAPI.html" title="XIVAPI (module)">XIVAPI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="XIVAPI/Client.html" title="XIVAPI::Client (class)">Client</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="XIVAPI/Client.html#initialize-instance_method" title="XIVAPI::Client#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='label'>api_key:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>abc123</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
 
 <span class='comment'># Advanced configuration
-</span><span class='id identifier rubyid_client'>client</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="XIVAPI.html" title="XIVAPI (module)">XIVAPI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="XIVAPI/Client.html" title="XIVAPI::Client (class)">Client</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="XIVAPI/Client.html#initialize-instance_method" title="XIVAPI::Client#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='label'>api_key:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>abc123</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>language:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>en</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>poll_rate:</span> <span class='int'>5</span><span class='rparen'>)</span>
+</span><span class='id identifier rubyid_client'>client</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="XIVAPI.html" title="XIVAPI (module)">XIVAPI</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="XIVAPI/Client.html" title="XIVAPI::Client (class)">Client</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="XIVAPI/Client.html#initialize-instance_method" title="XIVAPI::Client#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='label'>api_key:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>abc123</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='label'>language:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>fr</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
 </code></pre>
 
 <p>Now that you have a client, you can use it to contact the API. Examples
@@ -176,7 +176,7 @@ allowing you to access the data with methods like <code>first</code>,
 =&gt; ...
 &gt;&gt; id = linkshells.first.id
 =&gt; &quot;21955048183495181&quot;
-&gt;&gt; linkshell = client.linkshell(id: id, poll: true).linkshell
+&gt;&gt; linkshell = client.linkshell(id: id).linkshell
 =&gt; ...
 &gt;&gt; linkshell.name
 =&gt; &quot;Thunderbirds&quot;</code></pre>
@@ -231,7 +231,7 @@ href="https://opensource.org/licenses/MIT">MIT License</a>.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Mon Jun 24 01:25:51 2019 by
+  Generated on Mon Aug  5 13:45:39 2019 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.19 (ruby-2.4.1).
 </div>
