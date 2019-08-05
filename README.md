@@ -7,7 +7,7 @@ A Ruby library for [XIVAPI](https://www.xivapi.com/).
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'xivapi', git: 'https://github.com/xivapi/xivapi-ruby.git', tag: 'v0.2.5'
+gem 'xivapi', git: 'https://github.com/xivapi/xivapi-ruby.git', tag: 'v0.3.0'
 ```
 
 And then run:
@@ -31,7 +31,7 @@ require 'xivapi'
 client = XIVAPI::Client.new(api_key: 'abc123')
 
 # Advanced configuration
-client = XIVAPI::Client.new(api_key: 'abc123', language: 'en', poll_rate: 5)
+client = XIVAPI::Client.new(api_key: 'abc123', language: 'fr')
 ```
 
 Now that you have a client, you can use it to contact the API. Examples have been provided below for the various endpoints. For the full list of endpoints and their parameters, please reference the [request documentation](https://xivapi.github.io/xivapi-ruby/XIVAPI/Request.html).
@@ -108,7 +108,7 @@ See the examples below to get a better idea of how to access the data.
 => ...
 >> id = linkshells.first.id
 => "21955048183495181"
->> linkshell = client.linkshell(id: id, poll: true).linkshell
+>> linkshell = client.linkshell(id: id).linkshell
 => ...
 >> linkshell.name
 => "Thunderbirds"

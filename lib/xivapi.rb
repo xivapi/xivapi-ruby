@@ -30,13 +30,11 @@ module XIVAPI
     # Initializes a new client for querying XIVAPI
     # @param api_key [String] API key provided by XIVAPI
     # @param language [String] Requested response langauge
-    # @param poll_rate [Integer] Frequency at which to poll when waiting for data to cache
     # @param staging [true, false] Whether or not to query the staging API instead of production
-    def initialize(api_key: nil, language: :en, poll_rate: 5, staging: false)
+    def initialize(api_key: nil, language: :en, staging: false)
       @api_key = api_key
 
       self.language = language
-      self.poll_rate = poll_rate
       self.staging = staging
     end
 
@@ -51,18 +49,6 @@ module XIVAPI
       lang = language.to_s.downcase
       raise ArgumentError, 'Unsupported language' unless LANGUAGE_OPTIONS.include?(lang)
       @language = lang
-    end
-
-    # @return [Integer] The rate at which cached requests are polled
-    def poll_rate
-      @poll_rate
-    end
-
-    # @param rate [Integer] The rate at which to poll cached requests
-    # @return [Integer] The poll rate
-    def poll_rate=(rate)
-      raise ArgumentError, 'Poll rate must be a positive integer' unless rate.is_a?(Integer) && rate > 0
-      @poll_rate = rate
     end
 
     # @return [Hash] The default parameters for the client

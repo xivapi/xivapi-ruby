@@ -20,33 +20,5 @@ module XIVAPI
         super('Too many requests.')
       end
     end
-
-    # Content not available
-    class ContentNotAvailable < StandardError
-      def initialize
-        super('Content is not currently available on XIVAPI.')
-      end
-    end
-
-    # Content not found
-    class ContentNotFound < StandardError
-      def initialize
-        super('Content does not exist on the Lodestone.')
-      end
-    end
-
-    # Content blacklisted
-    class ContentBlacklisted < StandardError
-      def initialize
-        super('Content has been blacklisted.')
-      end
-    end
-
-    # Content private
-    class ContentPrivate < StandardError
-      def initialize
-        super('Content is private.')
-      end
-    end
   end
 end

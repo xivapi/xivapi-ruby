@@ -61,51 +61,14 @@ module XIVAPI::Request
     request(self, endpoint)
   end
 
-  # @param ids [Integer, Array<Integer>] ID(s) of the item(s) to look up
-  # @param servers [String, Array<String>] Server(s) to retrieve the market for
-  # @param data_center [String] Data center to retrieve the market for
-  # @param max_history [Integer] The maximum amount of history to retrieve
-  # @param columns [String, Array <String>] One or more columns to limit results to
-  # @return [OpenStruct] Market price results
-  def market(ids: [], servers: [], data_center: nil, max_history: nil, columns: [])
-    ids, server_names = [*ids], [*servers]
-    params = { max_history: max_history, columns: [*columns].join(',') }
-
-    if ids.size > 1
-      params.merge!(ids: ids.join(','), dc: data_center, servers: server_names.join(','))
-      request(self, 'market/items', params)
-    elsif data_center || server_names.size > 1 || server_names[0].match?(',')
-      params.merge!(dc: data_center, servers: server_names.join(','))
-      request(self, "market/item/#{ids.first}", params)
-    else
-      request(self, "market/#{server_names.first}/item/#{ids.first}", params)
-    end
-  end
-
-  # @return [Array<OpenStruct>] List of Market categories
-  def market_categories
-    request(self, 'market/categories')
-  end
-
   # @param id [Integer] Character ID
   # @param all_data [true, false] Return the full set of character data
-  # @param poll [true, false] Continuously call the API until a result is cached and returned
   # @param data [String, Array <String>] Additional data to request, see: https://xivapi.com/docs/Character#character
   # @param columns [String, Array <String>] One or more columns to limit results to
   # @return [OpenStruct] The requested character
-  def character(id: nil, all_data: false, poll: false, data: [], columns: [])
+  def character(id: nil, all_data: false, data: [], columns: [])
     params = { data: character_data(all_data, data), columns: [*columns].join(',') }
-    request_cached(self, "character/#{id}", :character, params, poll)
-  end
-
-  # @param ids [String, Array<Integer>] Character IDs
-  # @param all_data [true, false] Return the full set of character data
-  # @param data [String, Array <String>] Additional data to request, see: https://xivapi.com/docs/Character#character
-  # @param columns [String, Array <String>] One or more columns to limit results to
-  # @return [Array<OpenStruct>] The requested characters
-  def characters(ids: nil, all_data: false, data: [], columns: [])
-    body = { ids: [*ids].join(','), data: character_data(all_data, data), columns: [*columns].join(',') }
-    request(self, 'characters', {}, body)
+    request(self, "character/#{id}", params)
   end
 
   # @param name [String] Character name
@@ -118,26 +81,19 @@ module XIVAPI::Request
   end
 
   # @param id [Integer] Character ID
-  # @return [true, false] Whether or not the character update was requested successfully
-  def character_update(id: nil)
-    request(self, "character/#{id}/update") == 1
-  end
-
-  # @param id [Integer] Character ID
   # @param token [String] Verification token to check for
   # @return [true, false] Whether or not the character is verified
   def character_verified?(id: nil, token: nil)
-    request(self, "character/#{id}/verification", { token: token }).pass
+    character(id: id, columns: 'Character.Bio').character.bio.match?(token)
   end
 
   # @param id [Integer] Free company ID
   # @param members [true, false] Return member data
-  # @param poll [true, false] Continuously call the API until a result is cached and returned
   # @param columns [String, Array <String>] One or more columns to limit results to
   # @return [OpenStruct] The requested free company
-  def free_company(id: nil, members: false, poll: false, columns: [])
+  def free_company(id: nil, members: false, columns: [])
     params = { data: members ? 'FCM' : nil, columns: [*columns].join(',') }
-    request_cached(self, "freecompany/#{id}", :free_company, params, poll)
+    request(self, "freecompany/#{id}", params)
   end
 
   # @param name [String] Free company name
@@ -150,12 +106,11 @@ module XIVAPI::Request
   end
 
   # @param id [Integer] Linkshell ID
-  # @param poll [true, false] Continuously call the API until a result is cached and returned
   # @param columns [String, Array <String>] One or more columns to limit results to
   # @return [OpenStruct] The requested linkshell
-  def linkshell(id: nil, poll: false, columns: [])
+  def linkshell(id: nil, columns: [])
     params = { columns: [*columns].join(',') }
-    request_cached(self, "linkshell/#{id}", :linkshell, params, poll)
+    request(self, "linkshell/#{id}", params)
   end
 
   # @param name [String] Linkshell name
@@ -168,12 +123,11 @@ module XIVAPI::Request
   end
 
   # @param id [Integer] PVP team ID
-  # @param poll [true, false] Continuously call the API until a result is cached and returned
   # @param columns [String, Array <String>] One or more columns to limit results to
   # @return [OpenStruct] The requested PVP team
-  def pvp_team(id: nil, poll: false, columns: [])
+  def pvp_team(id: nil, columns: [])
     params = { columns: [*columns].join(',') }
-    request_cached(self, "pvpteam/#{id}", :pvp_team, params, poll)
+    request(self, "pvpteam/#{id}", params)
   end
 
   # @param name [String] PVP team name

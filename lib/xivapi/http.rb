@@ -39,44 +39,6 @@ module XIVAPI
       end
     end
 
-    # Makes a request to XIVAPI for cached data. This is data that must be cached
-    # by XIVAPI before it can be served. This method should be used over the standard
-    # request in order to properly throw custom errors and enable polling. Polling
-    # will continuously call the API until the data is cached and returned.
-    #
-    # @param client [XIVAPI::Client] The client making the request
-    # @param endpoint [String, Symbol] The endpoint to request
-    # @param key [String, Symbol] The results key that stores the cached data
-    # @param params [Hash] Request parameters
-    # @param poll [true, false] Whether or not to poll XIVAPI until data is returned
-    # @return the results of the request
-    def request_cached(client, endpoint, key, params = {}, poll = false)
-      columns = params[:columns]
-      unless columns.empty? || columns.match?('Info')
-        params[:columns] = columns.split(',').push('Info').join(',')
-      end
-
-      response = request(client, endpoint, params)
-
-      case(response.info[key].state)
-      when 0
-        raise XIVAPI::ContentNotAvailable
-      when 1
-        if poll
-          sleep(client.poll_rate)
-          response = request_cached(client, endpoint, key, params, poll)
-        end
-      when 3
-        raise XIVAPI::ContentNotFound
-      when 4
-        raise XIVAPI::ContentBlacklisted
-      when 5
-        raise XIVAPI::ContentPrivate
-      end
-
-      response
-    end
-
     private
     def request_url(client, endpoint)
       "#{client.staging ? STAGING_API_BASE : API_BASE}/#{endpoint}"
