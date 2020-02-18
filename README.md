@@ -124,14 +124,6 @@ See the examples below to get a better idea of how to access the data.
 => "!Kill_For_A_Friend!"
 ```
 
-#### Lodestone
-```rb
->> updates = client.lodestone(:updates)
-=> ...
->> updates.first.title
-=> "Companion App Updated (Sep. 18)"
-```
-
 #### Patch List
 ```rb
 >> patch = client.patch_list.last

@@ -139,13 +139,6 @@ module XIVAPI::Request
     XIVAPI::Paginator.new(self, params, 'pvpteam/search', LODESTONE_LIMIT)
   end
 
-  # @param category [String, Symbol] Category to retrieve (e.g. News, Updates, DevBlog)
-  # @return [Array<OpenStruct>] The requested Lodestone data
-  def lodestone(category)
-    endpoint = category.to_s.downcase.delete('_')
-    request(self, "lodestone/#{endpoint}")
-  end
-
   # @return [Array<OpenStruct>] List of game patches
   def patch_list
     request(self, 'patchlist')
