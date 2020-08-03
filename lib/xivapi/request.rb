@@ -6,7 +6,7 @@ module XIVAPI::Request
   LODESTONE_LIMIT = 50.freeze
 
   # Options used to retrieve all data when querying a character
-  ALL_CHARACTER_DATA = 'AC,FR,FC,FCM,PVP'.freeze
+  ALL_CHARACTER_DATA = 'AC,MIMO,CJ,FR,FC,FCM,PVP'.freeze
 
   # @param indexes [String, Array <String>] One or more indexes to search on
   # @param string [String] Value to search for in the string column
@@ -63,11 +63,13 @@ module XIVAPI::Request
 
   # @param id [Integer] Character ID
   # @param all_data [true, false] Return the full set of character data
+  # @param extended [true, false] Return additional data for various fields (e.g. name, icon)
   # @param data [String, Array <String>] Additional data to request, see: https://xivapi.com/docs/Character#character
   # @param columns [String, Array <String>] One or more columns to limit results to
   # @return [OpenStruct] The requested character
-  def character(id: nil, all_data: false, data: [], columns: [])
+  def character(id: nil, all_data: false, extended: false, data: [], columns: [])
     params = { data: character_data(all_data, data), columns: [*columns].join(',') }
+    params[:extended] = 1 if extended
     request(self, "character/#{id}", params)
   end
 
