@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    xivapi (0.3.2)
-      rest-client (~> 2.0)
+    xivapi (0.3.3)
+      rest-client (>= 2.0)
 
 GEM
   remote: https://rubygems.org/
